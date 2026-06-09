@@ -1,0 +1,792 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our First Aanniversary - Woo!</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body{
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #0d3b66 0%, #1a5f7a 50%, #c41e3a 100%);
+            min-height: 100vh;
+            padding: 20px;
+            overflow-x: hidden;
+        }
+
+        .container{
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            overflow: hidden;
+            position: relative;
+        }
+
+        .floating-decoration{
+            position: fixed;
+            font-size: 2.5em;
+            opacity: 0.15;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .float-1{
+            top: 10%;
+            left: 5%;
+            animation: float 6s ease-in-out infinite;
+        }
+
+        .float-2{
+            top: 20%;
+            right: 8%;
+            animation: float 8s ease-in-out infinite reverse;
+        }
+
+        .float-3{
+            top: 40%;
+            left: 3%;
+            animation: float 7s ease-in-out infinite;
+        }
+
+        .float-4{
+            bottom: 20%;
+            right: 5%;
+            animation: float 9s ease-in-out infinite reverse;
+        }
+
+        .float-5{
+            top: 60%;
+            left: 10%;
+            animation: float 8s ease-in-out infinite;
+        }
+
+        @keyframes float{
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-30px); }
+        }
+
+        .spin{
+            animation: spin 3s linear infinite;
+        }
+
+        @keyframes spin{
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        .pulse{
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        @keyframes pulse{
+            0%, 100% { opacity: 0.3; }
+            50% { opacity: 0.7; }
+        }
+
+        .header{
+            background: linear-gradient(135deg, #0d3b66 0%, #1a5f7a 50%, #c41e3a 100%);
+            color: white;
+            padding: 50px 30px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .header-decoration{
+            position: absolute;
+            font-size: 3em;
+            opacity: 0.2;
+        }
+
+        .header-deco-1{
+            top: 20px;
+            left: 30px;
+            animation: float 4s ease-in-out infinite;
+        }
+
+        .header-deco-2{
+            top: 20px;
+            right: 40px;
+            animation: float 5s ease-in-out infinite reverse;
+        }
+
+        .header-deco-3{
+            bottom: 20px;
+            left: 50px;
+        }
+
+        .header-deco-4{
+            bottom: 20px;
+            right: 60px;
+            animation: spin 8s linear infinite;
+        }
+
+        .header-content{
+            position: relative;
+            z-index: 1;
+        }
+
+        .header h1{
+            font-size: 3em;
+            margin-bottom: 10px;
+            letter-spacing: 2px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .initials{
+            display: inline-block;
+            font-size: 1.2em;
+            margin: 0 5px;
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        .header p{
+            font-size: 1.3em;
+            opacity: 0.95;
+            margin-top: 10px;
+        }
+
+        .nav-container{
+            display: flex;
+            background: linear-gradient(90deg, #0d3b66 0%, #c41e3a 100%);
+            border-bottom: 3px solid #0d3b66;
+            position: relative;
+        }
+
+        .nav-decoration{
+            position: absolute;
+            font-size: 1.5em;
+            opacity: 0.2;
+        }
+
+        .nav-deco-1{
+            top: 5px;
+            left: 20px;
+            animation: float 3s ease-in-out infinite;
+        }
+
+        .nav-deco-2{
+            top: 5px;
+            right: 30px;
+            animation: spin 4s linear infinite;
+        }
+
+        .nav-btn{
+            flex: 1;
+            padding: 15px 20px;
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-size: 1em;
+            font-weight: 600;
+            color: white;
+            transition: all 0.3s ease;
+            border-bottom: 4px solid transparent;
+            position: relative;
+            z-index: 1;
+        }
+
+        .nav-btn:hover{
+            background: rgba(255, 255, 255, 0.2);
+            transform: translateY(-2px);
+        }
+
+        .nav-btn.active{
+            background: white;
+            color: #0d3b66;
+            border-bottom-color: #c41e3a;
+            box-shadow: 0 -2px 8px rgba(13, 59, 102, 0.2);
+        }
+
+        .content{
+            padding: 50px 40px;
+            min-height: 600px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .page{
+            display: none;
+            animation: fadeIn 0.4s ease;
+            position: relative;
+        }
+
+        .page.active{
+            display: block;
+        }
+
+        @keyframes fadeIn{
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .page-decoration{
+            position: absolute;
+            font-size: 2em;
+            opacity: 0.1;
+            pointer-events: none;
+        }
+
+        .page-deco-1{
+            top: 50px;
+            right: 30px;
+            animation: float 5s ease-in-out infinite;
+        }
+
+        .page-deco-2{
+            bottom: 100px;
+            left: 40px;
+            animation: spin 6s linear infinite;
+        }
+
+        .page h2{
+            color: #0d3b66;
+            margin-bottom: 30px;
+            font-size: 2em;
+            border-bottom: 4px solid #c41e3a;
+            padding-bottom: 15px;
+            position: relative;
+        }
+
+        .page h2::before{
+            content: '';
+            display: inline-block;
+            width: 12px;
+            height: 12px;
+            background: #c41e3a;
+            border-radius: 50%;
+            margin-right: 10px;
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        .page p{
+            color: #333;
+            line-height: 1.9;
+            margin-bottom: 18px;
+            font-size: 1.08em;
+        }
+
+        .page-1 p{
+            text-align: center;
+            font-size: 1.15em;
+            margin-bottom: 25px;
+        }
+
+        .decorative-text{
+            display: inline-block;
+            color: #c41e3a;
+            font-weight: bold;
+            margin: 0 5px;
+        }
+
+        .fun-fact{
+            background: linear-gradient(135deg, #f0f8ff 0%, #ffe8f0 100%);
+            border-left: 6px solid #0d3b66;
+            border-radius: 8px;
+            padding: 25px;
+            margin-bottom: 25px;
+            position: relative;
+            box-shadow: 0 4px 12px rgba(13, 59, 102, 0.1);
+        }
+
+        .fun-fact::before{
+            content: '';
+            position: absolute;
+            right: 20px;
+            top: 20px;
+            font-size: 2em;
+            opacity: 0.15;
+            animation: float 4s ease-in-out infinite;
+        }
+
+        .fun-fact:nth-child(2)::before{
+            content: '🌷';
+        }
+
+        .fun-fact:nth-child(3)::before{
+            content: '🦦';
+        }
+
+        .memo-item{
+            background: linear-gradient(135deg, #fff8f0 0%, #ffe8f0 100%);
+            border-left: 6px solid #c41e3a;
+            border-radius: 8px;
+            padding: 25px;
+            margin-bottom: 25px;
+            position: relative;
+            box-shadow: 0 4px 12px rgba(196, 30, 58, 0.1);
+        }
+
+        .memo-item::before{
+            content: '✓';
+            position: absolute;
+            right: 20px;
+            top: 15px;
+            font-size: 1.8em;
+            color: #c41e3a;
+            opacity: 0.3;
+        }
+
+        .memo-item:nth-child(2)::before{
+            content: '◆';
+        }
+
+        .memo-item:nth-child(3)::before{
+            content: '◇';
+        }
+
+        .memo-item:nth-child(4)::before{
+            content: '●';
+        }
+
+        .game-area{
+            position: relative;
+            width: 100%;
+            height: 500px;
+            background: linear-gradient(135deg, #e8f4f8 0%, #ffe8f0 100%);
+            border-radius: 12px;
+            margin-top: 30px;
+            overflow: hidden;
+            border: 4px dashed #0d3b66;
+        }
+
+        .game-area-decoration{
+            position: absolute;
+            font-size: 2.5em;
+            opacity: 0.1;
+            animation: float 6s ease-in-out infinite;
+            pointer-events: none;
+        }
+
+        .game-deco-1{
+            top: 20px;
+            left: 30px;
+        }
+
+        .game-deco-2{
+            top: 20px;
+            right: 40px;
+            animation: float 7s ease-in-out infinite reverse;
+        }
+
+        .game-deco-3{
+            bottom: 30px;
+            left: 50px;
+        }
+
+        .game-deco-4{
+            bottom: 30px;
+            right: 60px;
+            animation: spin 8s linear infinite;
+        }
+
+        .progress-section{
+            margin-bottom: 30px;
+        }
+
+        .progress-bar{
+            width: 100%;
+            height: 14px;
+            background: #eee;
+            border-radius: 7px;
+            overflow: hidden;
+            margin-bottom: 12px;
+            border: 2px solid #0d3b66;
+        }
+
+        .progress-fill{
+            height: 100%;
+            background: linear-gradient(90deg, #0d3b66 0%, #c41e3a 100%);
+            width: 0%;
+            transition: width 0.3s ease;
+        }
+
+        .progress-text{
+            color: #0d3b66;
+            font-weight: 700;
+            text-align: center;
+            font-size: 1.05em;
+        }
+
+        .hidden-spot{
+            position: absolute;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .hidden-spot:hover{
+            transform: scale(1.15);
+        }
+
+        .hidden-spot.found{
+            cursor: default;
+        }
+
+        .spot-circle{
+            width: 90px;
+            height: 90px;
+            border-radius: 50%;
+            background: rgba(13, 59, 102, 0.25);
+            border: 4px solid rgba(13, 59, 102, 0.6);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 1.8em;
+            transition: all 0.3s ease;
+            font-weight: bold;
+            color: #0d3b66;
+        }
+
+        .hidden-spot:hover .spot-circle{
+            background: rgba(13, 59, 102, 0.5);
+            border-color: #0d3b66;
+            box-shadow: 0 0 20px rgba(13, 59, 102, 0.3);
+        }
+
+        .hidden-spot.found .spot-circle{
+            background: rgba(76, 175, 80, 0.4);
+            border-color: rgba(76, 175, 80, 0.8);
+            color: rgba(76, 175, 80, 0.8);
+        }
+
+        .spot-label{
+            position: absolute;
+            background: rgba(13, 59, 102, 0.9);
+            color: white;
+            padding: 10px 14px;
+            border-radius: 6px;
+            font-size: 0.95em;
+            white-space: nowrap;
+            pointer-events: none;
+            opacity: 0;
+            transform: translateY(-15px);
+            transition: all 0.3s ease;
+            font-weight: 600;
+        }
+
+        .hidden-spot:hover .spot-label{
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .locked-message{
+            background: linear-gradient(135deg, #f5f5f5 0%, #f0f0f0 100%);
+            border-radius: 12px;
+            padding: 35px;
+            margin-top: 35px;
+            border: 3px dashed #0d3b66;
+            text-align: center;
+            position: relative;
+        }
+
+        .locked-message::before{
+            content: '🔒';
+            position: absolute;
+            top: 10px;
+            right: 20px;
+            font-size: 2em;
+            opacity: 0.3;
+        }
+
+        .locked-message.hidden{
+            display: none;
+        }
+
+        .locked-message h3{
+            color: #0d3b66;
+            margin-bottom: 10px;
+            font-size: 1.3em;
+        }
+
+        .locked-message p{
+            color: #666;
+            margin: 0;
+        }
+
+        .unlocked-message{
+            background: linear-gradient(135deg, #0d3b66 0%, #1a5f7a 50%, #c41e3a 100%);
+            color: white;
+            border-radius: 12px;
+            padding: 40px;
+            margin-top: 35px;
+            box-shadow: 0 15px 40px rgba(13, 59, 102, 0.4);
+            display: none;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .unlocked-message::before{
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 'radial-gradient(circle, rgba(255,255,255,0.1) 1px, transparent 1px)';
+            opacity: 0.5;
+            pointer-events: none;
+        }
+
+        .unlocked-message.show{
+            display: block;
+            animation: slideIn 0.6s ease;
+        }
+
+        .unlocked-message h3{
+            margin-bottom: 20px;
+            font-size: 1.5em;
+            position: relative;
+            z-index: 1;
+        }
+
+        .unlocked-message p{
+            font-size: 1.1em;
+            line-height: 1.8;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+            position: relative;
+            z-index: 1;
+        }
+
+        @keyframes slideIn{
+            from {
+                opacity: 0;
+                transform: translateY(30px) scale(0.95);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+
+        .celebration{
+            display: none;
+            text-align: center;
+            margin-top: 25px;
+            font-size: 2em;
+            position: relative;
+            z-index: 1;
+        }
+
+        .celebration.show{
+            display: block;
+            animation: celebrateBounce 0.8s ease;
+        }
+
+        @keyframes celebrateBounce{
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.2); }
+        }
+
+        .celebration-text{
+            display: inline-block;
+            margin: 0 15px;
+            animation: float 3s ease-in-out infinite;
+        }
+
+        .footer-decoration{
+            text-align: center;
+            padding: 30px;
+            font-size: 2em;
+            background: linear-gradient(90deg, #e8f4f8 0%, #ffe8f0 100%);
+            border-top: 3px solid #0d3b66;
+            letter-spacing: 2em;
+        }
+
+        .footer-decoration span{
+            display: inline-block;
+            animation: float 4s ease-in-out infinite;
+            margin: 0 8px;
+        }
+
+        .footer-decoration span:nth-child(2){
+            animation: float 5s ease-in-out infinite reverse;
+        }
+
+        .footer-decoration span:nth-child(3){
+            animation: spin 6s linear infinite;
+        }
+
+        .footer-decoration span:nth-child(4){
+            animation: float 7s ease-in-out infinite;
+        }
+
+        @media (max-width: 768px){
+            .header h1 {
+                font-size: 2em;
+            }
+
+            .content {
+                padding: 25px 20px;
+            }
+
+            .game-area {
+                height: 400px;
+            }
+
+            .spot-circle {
+                width: 70px;
+                height: 70px;
+                font-size: 1.5em;
+            }
+
+            .nav-btn {
+                font-size: 0.85em;
+                padding: 12px 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="floating-decoration float-1">🌷</div>
+    <div class="floating-decoration float-2">🦦</div>
+    <div class="floating-decoration float-3">🌷</div>
+    <div class="floating-decoration float-4">🦭</div>
+    <div class="floating-decoration float-5">🌷</div>
+
+    <div class="container">
+        <div class="header">
+            <div class="header-decoration header-deco-1">🌷</div>
+            <div class="header-decoration header-deco-2">🦦</div>
+            <div class="header-decoration header-deco-3">🦭</div>
+            <div class="header-decoration header-deco-4">✦</div>
+
+            <div class="header-content">
+                <h1>Our First Aanniversary</h1>
+                <p><span class="initials">E</span>&<span class="initials">J</span></p>
+                <p style="font-size: 1.1em; margin-top: 15px;">Woo!</p>
+            </div>
+        </div>
+
+        <div class="nav-container">
+            <div class="nav-decoration nav-deco-1">🌷</div>
+            <div class="nav-decoration nav-deco-2">🦦</div>
+            <button class="nav-btn active" onclick="showPage(1)">Message</button>
+            <button class="nav-btn" onclick="showPage(2)">Fun Facts</button>
+            <button class="nav-btn" onclick="showPage(3)">Memories
+            </button>
+            <button class="nav-btn" onclick="showPage(4)">I love you cutie
+            </button>
+        </div>
+
+        <div class="content">
+            <!-- Page 1: Message -->
+            <div class="page active" id="page-1">
+                <div class="page-decoration page-deco-1">🌷</div>
+                <div class="page-decoration page-deco-2">🦦</div>
+
+                <h2>A Message</h2>
+                <p>Hello Emily. Okay, sorry. Anyways, <span class="decorative-text">HIII BABYYY!</span></p>
+                <p>On this day we got into a relationship. Isn't that crazy? How it's already been a year with you. Time flies by so fast, and during that time where we were together, you helped me realize that I don't have to do everything alone. If anything gets heavy, you're always there for me.</p>
+                <p>You listen to me when I yap about anything, and <span class="decorative-text">thank you for being my listener.</span> You're my one and only. I love you, baby. More than you can imagine.</p>
+                <p>I love you so much that the heart in my body I can't even begin to call it mine as you took it from me. Since I'm nice, you can keep it. Just please be gentle with me.</p>
+            </div>
+
+            <!-- Page 2: Fun Facts -->
+            <div class="page" id="page-2">
+                <div class="page-decoration page-deco-1">🦦</div>
+                <div class="page-decoration page-deco-2">🌷</div>
+
+                <h2>Fun........</h2>
+                <div class="fun-fact">
+                    <p>I fell in love with you since the day I got to meet you again. My feelings for you during 2022 were still there. I loved you since, and ever since that day where I left you, it left a hole in my heart. I felt like I lost a part of me. But I'm very lucky that you gave me another chance, baby. When I texted you that day, I thought you would hate me for leaving you. But it seemed like you forgave me. This time, I won't ever leave you.</p>
+                </div>
+                <div class="fun-fact">
+                    <p>You know, if I'm being honest, I still have one picture of you from 2022. I didn't delete it because it's the first picture you ever gave me, and to this day, I'll never delete it no matter what.</p>
+                    <p>Every time I see a shade of blue, my first thought is always you. I can't think of anything else but you when it comes to that color.</p>
+                </div>
+            </div>
+
+            <!-- Page 3: Memories -->
+            <div class="page" id="page-3">
+                <div class="page-decoration page-deco-1">🦭</div>
+                <div class="page-decoration page-deco-2">🌷</div>
+
+                <h2>Our Memories</h2>
+                <div class="memo-item">
+                    <p>Remember when you thought you donated to Doughnut Girl and found out you gave it to the wrong guy? To this day, I still have that video. It makes me smile every time I come back to watch it. Maybe it's your voice that puts the nail in the coffin.</p>
+                </div>
+                <div class="memo-item">
+                    <p>When we were playing Grow a Garden, we put our initials in one slot of our garden. That was so cute. I still have mine to this day.</p>
+                </div>
+                <div class="memo-item">
+                    <p>I love when you tried to match my avatar and I asked you why are you emo? Then you replied with "sorry for trying to match you," even though I knew you tried to match me. I just wanted to tease you.</p>
+                </div>
+            </div>
+        <div class="footer-decoration">
+            <span>🌷</span>
+            <span>🦦</span>
+            <span>✦</span>
+            <span>🦭</span>
+        </div>
+    </div>
+
+    <script>
+        let foundPhotos = 0;
+        const totalPhotos = 3;
+
+        function showPage(pageNum){
+            const pages = document.querySelectorAll('.page');
+            const navBtns = document.querySelectorAll('.nav-btn');
+
+            pages.forEach(page => page.classList.remove('active'));
+            navBtns.forEach(btn => btn.classList.remove('active'));
+
+            document.getElementById('page-' + pageNum).classList.add('active');
+            navBtns[pageNum - 1].classList.add('active');
+
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function positionSpots(){
+            const spots = document.querySelectorAll('.hidden-spot');
+            const positions = [
+                { top: '15%', left: '12%' },
+                { top: '55%', right: '15%' },
+                { top: '35%', left: '58%' }
+            ];
+
+            spots.forEach((spot, index) => {
+                Object.assign(spot.style, positions[index]);
+            });
+        }
+
+        function updateProgress(){
+            const progress = (foundPhotos / totalPhotos) * 100;
+            document.getElementById('progressFill').style.width = progress + '%';
+            document.getElementById('progressText').textContent = 'Found ' + foundPhotos + '/' + totalPhotos + ' Photos';
+
+            if (foundPhotos === totalPhotos){
+                unlockMessage();
+            }
+        }
+
+        function unlockMessage(){
+            document.getElementById('lockedMessage').classList.add('hidden');
+            document.getElementById('unlockedMessage').classList.add('show');
+            document.getElementById('celebration').classList.add('show');
+        }
+
+        document.querySelectorAll('.hidden-spot').forEach(spot => {
+            spot.addEventListener('click', function(){
+                if (!this.classList.contains('found')){
+                    this.classList.add('found');
+                    foundPhotos++;
+                    updateProgress();
+                }
+            });
+        });
+
+        positionSpots();
+    </script>
+</body>
+</html>
+
